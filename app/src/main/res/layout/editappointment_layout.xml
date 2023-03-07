@@ -1,0 +1,75 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    tools:context=".EditAppointmentFragment" >
+
+    <TableRow>
+        <TextView
+            android:id="@+id/editAppointmentLabel"
+            android:textStyle="bold"
+            android:background="#EEFFBB"
+            android:text="Appointment:" />
+        <Spinner
+            android:id="@+id/editAppointmentSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="4" />
+        </TableRow>
+    <TableRow>
+      <TextView
+		   android:id="@+id/editAppointmentappointmentIdLabel"
+		   android:textStyle="bold"
+		   android:background="#EEFFBB"
+		   android:text="AppointmentId:" />
+		
+	  <EditText
+		   android:id="@+id/editAppointmentappointmentIdField"
+		   android:layout_span="4" />
+	</TableRow>	
+    <TableRow>
+      <TextView
+		   android:id="@+id/editAppointmentcodeLabel"
+		   android:textStyle="bold"
+		   android:background="#EEFFBB"
+		   android:text="Code:" />
+		
+	  <EditText
+		   android:id="@+id/editAppointmentcodeField"
+		   android:layout_span="4" />
+	</TableRow>	
+    <TableRow>
+		<Button
+            android:id="@+id/editAppointmentSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:background="#AAAAFF"
+            android:text="Search"
+            android:onClick="editAppointmentSearch"
+            />		    
+        <Button
+            android:id="@+id/editAppointmentOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:background="#AAAAFF"
+            android:text="OK"
+            android:onClick="editAppointmentOK"
+            />
+        <Button
+            android:id="@+id/editAppointmentCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:background="#FFAAAA"
+            android:text="Cancel"
+            android:onClick="editAppointmentCancel"
+            />
+    </TableRow>
+</TableLayout>
+</ScrollView>

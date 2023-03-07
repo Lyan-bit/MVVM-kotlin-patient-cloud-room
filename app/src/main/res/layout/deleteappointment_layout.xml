@@ -1,0 +1,53 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    tools:context=".DeleteAppointmentFragment" >
+
+    <TableRow>
+        <TextView
+            android:id="@+id/deleteAppointmentappointmentIdLabel"
+            android:textStyle="bold"
+            android:background="#EEFFBB"
+            android:text="appointmentId:" />
+        
+        <EditText
+            android:id="@+id/deleteAppointmentappointmentIdField"
+            android:layout_span="4" />
+    </TableRow>
+
+
+    <TableRow>
+        <TextView
+            android:id="@+id/deleteAppointmentLabel"
+            android:textStyle="bold"
+            android:background="#EEFFBB"
+            android:text="Appointment:" />
+        <Spinner
+            android:id="@+id/deleteAppointmentSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="4" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/deleteAppointmentOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:background="#AAAAFF"
+            android:text="OK"
+            android:onClick="deleteAppointmentOK"
+            />
+        <Button
+            android:id="@+id/deleteAppointmentCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:background="#FFAAAA"
+            android:text="Cancel"
+            android:onClick="deleteAppointmentCancel"
+            />
+    </TableRow>
+</TableLayout>

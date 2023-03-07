@@ -1,0 +1,71 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:stretchColumns="1"
+  tools:context=".AddPatientattendsAppointmentFragment">
+  <TableRow>
+  <TextView
+    android:id="@+id/addPatientattendsAppointmentpatientIdLabel"
+    android:textStyle="bold"
+    android:background="#EEFFBB"
+    android:text="PatientId:" />
+  <EditText
+    android:id="@+id/addPatientattendsAppointmentpatientIdField"
+    android:layout_span="4" />
+  </TableRow>
+  <TableRow>
+  <TextView
+    android:id="@+id/addPatientattendsAppointmentappointmentIdLabel"
+    android:textStyle="bold"
+    android:background="#EEFFBB"
+    android:text="AppointmentId:" />
+  <EditText
+    android:id="@+id/addPatientattendsAppointmentappointmentIdField"
+    android:layout_span="4" />
+  </TableRow>
+ <TableRow>
+  <TextView
+    android:id="@+id/addPatientattendsAppointmentpatientIdSpinnerLabel"
+    android:textStyle="bold"
+    android:background="#EEFFBB"
+    android:text="Patient:" />
+<Spinner
+  android:id="@+id/addPatientattendsAppointmentpatientIdSpinner"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" 
+  android:layout_span="4" />
+ </TableRow>
+ <TableRow>
+  <TextView
+    android:id="@+id/addPatientattendsAppointmentappointmentIdSpinnerLabel"
+    android:textStyle="bold"
+    android:background="#EEFFBB"
+    android:text="Appointment:" />
+<Spinner
+  android:id="@+id/addPatientattendsAppointmentappointmentIdSpinner"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" 
+  android:layout_span="4" />
+ </TableRow>
+ <TableRow>
+  <Button
+    android:id="@+id/addPatientattendsAppointmentOK"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_column="1"
+    android:background="#AAAAFF"
+    android:text="OK"
+    android:onClick="addPatientattendsAppointmentOK"
+    />
+  <Button
+    android:id="@+id/addPatientattendsAppointmentCancel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_column="3"
+    android:background="#FFAAAA"
+    android:text="Cancel"
+    android:onClick="addPatientattendsAppointmentCancel"
+    />
+ </TableRow>
+</TableLayout>
