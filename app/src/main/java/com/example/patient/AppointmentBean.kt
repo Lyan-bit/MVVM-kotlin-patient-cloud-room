@@ -109,7 +109,7 @@ class AppointmentBean(_c: Context) {
 		return errors.size > 0
 	}
 
-	suspend fun addPatientattendsAppointment() {
+	fun addPatientattendsAppointment() {
 		model.addPatientattendsAppointment(appointmentId, patientId)
 		resetData()
 	}
@@ -120,7 +120,7 @@ class AppointmentBean(_c: Context) {
 		return errors.size > 0
 	}
 
-	suspend fun removePatientattendsAppointment() {
+	fun removePatientattendsAppointment() {
 		model.removePatientattendsAppointment(appointmentId, patientId)
 		resetData()
 	}
