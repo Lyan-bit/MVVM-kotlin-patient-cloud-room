@@ -23,47 +23,49 @@ class FirebaseDB() {
         if (database == null) {
             return
         }
-        val patient_listener: ValueEventListener = object : ValueEventListener {
+        val patientListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get instances from the cloud database
-                val _patients = dataSnapshot.value as HashMap<String, Object>?
-                if (_patients != null) {
-                    val _keys = _patients.keys
-                    for (_key in _keys) {
-                        val _x = _patients[_key]
-                        PatientDAO.parseRaw(_x)
+                val patients = dataSnapshot.value as HashMap<String, Object>?
+                if (patients != null) {
+                    val keys = patients.keys
+                    for (key in keys) {
+                        val x = patients[key]
+                        PatientDAO.parseRaw(x)
                     }
                     // Delete local objects which are not in the cloud:
                     val _locals = ArrayList<Patient>()
-                    _locals.addAll(Patient.Patient_allInstances)
-                    for (_x in _locals) {
-                        if (_keys.contains(_x.patientId)) {
+                    locals.addAll(Patient.PatientAllInstances)
+                    for (x in locals) {
+                        if (keys.contains(x.patientId)) {
                         } else {
-                            Patient.killPatient(_x.patientId)
+                            Patient.killPatient(x.patientId)
                         }
                     }
                 }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {}
+            override fun onCancelled(databaseError: DatabaseError) {
+            //cancel
+            }
         }
-        database!!.child("patients").addValueEventListener(patient_listener)
+        database!!.child("patients").addValueEventListener(patientListener)
     }
 
     fun persistPatient(ex: Patient) {
-        val _evo = PatientVO(ex)
-        val _key = _evo.getPatientId()
+        val evo = PatientVO(ex)
+        val key = evo.getPatientId()
         if (database == null) {
             return
         }
-        database!!.child("patients").child(_key).setValue(_evo)
+        database!!.child("patients").child(key).setValue(evo)
     }
 
     fun deletePatient(ex: Patient) {
-        val _key: String = ex.patientId
+        val key: String = ex.patientId
         if (database == null) {
             return
         }
-        database!!.child("patients").child(_key).removeValue()
+        database!!.child("patients").child(key).removeValue()
     }
 }
