@@ -6,32 +6,32 @@ import java.util.HashSet
 class Appointment {
 
     init {
-        Appointment_allInstances.add(this)
+        AppointmentAllInstances.add(this)
     }
 
     companion object {
-        var Appointment_allInstances = ArrayList<Appointment>()
+        var AppointmentAllInstances = ArrayList<Appointment>()
         fun createAppointment(): Appointment {
             return Appointment()
         }
         
-        var Appointment_index: HashMap<String, Appointment> = HashMap<String, Appointment>()
+        var AppointmentIndex: HashMap<String, Appointment> = HashMap<String, Appointment>()
         
         fun createByPKAppointment(idx: String): Appointment {
-            var result: Appointment? = Appointment_index[idx]
+            var result: Appointment? = AppointmentIndex[idx]
             if (result != null) { return result }
                   result = Appointment()
-                  Appointment_index.put(idx,result)
+                  AppointmentIndex.put(idx,result)
                   result.appointmentId = idx
                   return result
         }
         
 		fun killAppointment(idx: String?) {
-            val rem = Appointment_index[idx] ?: return
+            val rem = AppointmentIndex[idx] ?: return
             val remd = ArrayList<Appointment>()
             remd.add(rem)
-            Appointment_index.remove(idx)
-            Appointment_allInstances.removeAll(remd)
+            AppointmentIndex.remove(idx)
+            AppointmentAllInstances.removeAll(remd)
         }        
     }
 
