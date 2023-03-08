@@ -30,26 +30,26 @@ class PatientDAO {
         }
 
         fun isCached(id: String?): Boolean {
-            val _x: Patient = Patient.Patient_index.get(id) ?: return false
+            val x: Patient = Patient.PatientIndex.get(id) ?: return false
             return true
         }
 
         fun getCachedInstance(id: String): Patient? {
-            return Patient.Patient_index.get(id)
+            return Patient.PatientIndex.get(id)
         }
 
-      fun parseCSV(_line: String?): Patient? {
-          if (_line == null) {
+      fun parseCSV(line: String?): Patient? {
+          if (line == null) {
               return null
           }
-          val _line1vals: ArrayList<String> = Ocl.tokeniseCSV(_line)
-          var patientx: Patient? = Patient.Patient_index.get(_line1vals[0])
+          val line1vals: ArrayList<String> = Ocl.tokeniseCSV(line)
+          var patientx: Patient? = Patient.PatientIndex.get(line1vals[0])
           if (patientx == null) {
-              patientx = Patient.createByPKPatient(_line1vals[0])
+              patientx = Patient.createByPKPatient(line1vals[0])
           }
-          patientx.patientId = _line1vals[0].toString()
-          patientx.name = _line1vals[1].toString()
-          patientx.appointmentId = _line1vals[2].toString()
+          patientx.patientId = line1vals[0].toString()
+          patientx.name = line1vals[1].toString()
+          patientx.appointmentId = line1vals[2].toString()
           return patientx
       }
 
@@ -59,15 +59,15 @@ class PatientDAO {
                 null
             } else try {
                 val id = obj.getString("patientId")
-                var _patientx: Patient? = Patient.Patient_index.get(id)
-                if (_patientx == null) {
-                    _patientx = Patient.createByPKPatient(id)
+                var patientx: Patient? = Patient.PatientIndex.get(id)
+                if (patientx == null) {
+                    patientx = Patient.createByPKPatient(id)
                 }
-                _patientx.patientId = obj.getString("patientId")
-                _patientx.name = obj.getString("name")
-                _patientx.appointmentId = obj.getString("appointmentId")
-                _patientx
-            } catch (_e: Exception) {
+                patientx.patientId = obj.getString("patientId")
+                patientx.name = obj.getString("name")
+                patientx.appointmentId = obj.getString("appointmentId")
+                patientx
+            } catch (e: Exception) {
                 null
             }
         }
@@ -81,10 +81,11 @@ class PatientDAO {
           for (item in rows.indices) {
               val row = rows[item]
               if (row == null || row.trim { it <= ' ' }.length == 0) {
+                  //trim
               } else {
-                  val _x: Patient? = parseCSV(row)
-                  if (_x != null) {
-                      result.add(_x)
+                  val x: Patient? = parseCSV(row)
+                  if (x != null) {
+                      result.add(x)
                   }
               }
           }
@@ -100,27 +101,28 @@ class PatientDAO {
             val len = jarray.length()
             for (i in 0 until len) {
                 try {
-                    val _x = jarray.getJSONObject(i)
-                    if (_x != null) {
-                        val _y: Patient? = parseJSON(_x)
-                        if (_y != null) {
-                            res.add(_y)
+                    val x = jarray.getJSONObject(i)
+                    if (x != null) {
+                        val y: Patient? = parseJSON(x)
+                        if (y != null) {
+                            res.add(y)
                         }
                     }
-                } catch (_e: Exception) {
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
             return res
         }
 
 
-        fun writeJSON(_x: Patient): JSONObject? {
+        fun writeJSON(x: Patient): JSONObject? {
             val result = JSONObject()
             try {
-                result.put("patientId", _x.patientId)
-                result.put("name", _x.name)
-                result.put("appointmentId", _x.appointmentId)
-            } catch (_e: Exception) {
+                result.put("patientId", x.patientId)
+                result.put("name", x.name)
+                result.put("appointmentId", x.appointmentId)
+            } catch (e: Exception) {
                 return null
             }
             return result
@@ -132,31 +134,33 @@ class PatientDAO {
                  return null
             }
             try {
-                val _map = obj as HashMap<String, Object>
-                val id: String = _map["patientId"].toString()
-                var _patientx: Patient? = Patient.Patient_index.get(id)
-                if (_patientx == null) {
-                    _patientx = Patient.createByPKPatient(id)
+                val map = obj as HashMap<String, Object>
+                val id: String = map["patientId"].toString()
+                var patientx: Patient? = Patient.PatientIndex.get(id)
+                if (patientx == null) {
+                    patientx = Patient.createByPKPatient(id)
                 }
-                _patientx.patientId = _map["patientId"].toString()
-                _patientx.name = _map["name"].toString()
-                _patientx.appointmentId = _map["appointmentId"].toString()
-                return _patientx
-            } catch (_e: Exception) {
+                patientx.patientId = map["patientId"].toString()
+                patientx.name = map["name"].toString()
+                patientx.appointmentId = map["appointmentId"].toString()
+                return patientx
+            } catch (e: Exception) {
                 return null
             }
         }
 
         fun writeJSONArray(es: ArrayList<Patient>): JSONArray {
             val result = JSONArray()
-            for (_i in 0 until es.size) {
-                val _ex: Patient = es[_i]
-                val _jx = writeJSON(_ex)
-                if (_jx == null) {
+            for (i in 0 until es.size) {
+                val ex: Patient = es[i]
+                val jx = writeJSON(ex)
+                if (jx == null) {
+                    //jx
                 } else {
                     try {
-                        result.put(_jx)
-                    } catch (_ee: Exception) {
+                        result.put(jx)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
                 }
             }
