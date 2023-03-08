@@ -6,32 +6,32 @@ import java.util.HashSet
 class Patient {
 
     init {
-        Patient_allInstances.add(this)
+        PatientAllInstances.add(this)
     }
 
     companion object {
-        var Patient_allInstances = ArrayList<Patient>()
+        var PatientAllInstances = ArrayList<Patient>()
         fun createPatient(): Patient {
             return Patient()
         }
         
-        var Patient_index: HashMap<String, Patient> = HashMap<String, Patient>()
+        var PatientIndex: HashMap<String, Patient> = HashMap<String, Patient>()
         
         fun createByPKPatient(idx: String): Patient {
-            var result: Patient? = Patient_index[idx]
+            var result: Patient? = PatientIndex[idx]
             if (result != null) { return result }
                   result = Patient()
-                  Patient_index.put(idx,result)
+                  PatientIndex.put(idx,result)
                   result.patientId = idx
                   return result
         }
         
 		fun killPatient(idx: String?) {
-            val rem = Patient_index[idx] ?: return
+            val rem = PatientIndex[idx] ?: return
             val remd = ArrayList<Patient>()
             remd.add(rem)
-            Patient_index.remove(idx)
-            Patient_allInstances.removeAll(remd)
+            PatientIndex.remove(idx)
+            PatientAllInstances.removeAll(remd)
         }        
     }
 
