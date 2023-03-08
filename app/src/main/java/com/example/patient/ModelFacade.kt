@@ -29,8 +29,8 @@ class ModelFacade private constructor(context: Context) {
     }
     
 	    /* This metatype code requires OclType.java, OclAttribute.java, OclOperation.java */
-	    fun initialiseOclTypes() {	    val Patient_OclType: OclType = OclType.createByPKOclType("Patient")
-	        Patient_OclType.setMetatype(Patient::class.java)
+	    fun initialiseOclTypes() {	    val PatientOclType: OclType = OclType.createByPKOclType("Patient")
+	        PatientOclType.setMetatype(Patient::class.java)
     }
 
     val allAppointments: LiveData<List<AppointmentEntity>> = repository.allAppointments.asLiveData()
@@ -63,21 +63,21 @@ class ModelFacade private constructor(context: Context) {
         }
     }
     
-    fun createPatient(_x: PatientVO) { 
-		editPatient(_x)
+    fun createPatient(x: PatientVO) { 
+		editPatient(x)
 	}
 				    
-    fun editPatient(_x: PatientVO) {
-		var obj = getPatientByPK(_x.getPatientId())
+    fun editPatient(x: PatientVO) {
+		var obj = getPatientByPK(x.getPatientId())
 		if (obj == null) {
-			obj = Patient.createByPKPatient(_x.getPatientId())
+			obj = Patient.createByPKPatient(x.getPatientId())
 	    }
 			
-		  obj.patientId = _x.getPatientId()
-		  obj.name = _x.getName()
-		  obj.appointmentId = _x.getAppointmentId()
+		  obj.patientId = x.getPatientId()
+		  obj.name = x.getName()
+		  obj.appointmentId = x.getAppointmentId()
 		cdb.persistPatient(obj)
-		currentPatient = _x
+		currentPatient = x
 	}
 		
 	fun searchPatientById(search: String) : PatientVO {
@@ -89,11 +89,11 @@ class ModelFacade private constructor(context: Context) {
 		return res
 	}
 	
-  	fun deletePatient(_id: String) {
-		  val obj = getPatientByPK(_id)
+  	fun deletePatient(id: String) {
+		  val obj = getPatientByPK(id)
 		  if (obj != null) {
 			  cdb.deletePatient(obj)
-			  Patient.killPatient(_id)
+			  Patient.killPatient(id)
 		   }
 		   currentPatient = null	
 	}
@@ -102,21 +102,21 @@ class ModelFacade private constructor(context: Context) {
 		currentPatient = x
 	}
 			    
-    suspend fun createAppointment(_x: AppointmentEntity) {
-        repository.createAppointment(_x)
-        currentAppointment = _x
+    suspend fun createAppointment(x: AppointmentEntity) {
+        repository.createAppointment(x)
+        currentAppointment = x
     }
     
    fun setSelectedAppointment(x: AppointmentEntity) {
 	     currentAppointment = x
 	}
 	    
-   suspend fun editAppointment(_x: AppointmentEntity) {
-        repository.updateAppointment(_x)
-        currentAppointment = _x
+   suspend fun editAppointment(x: AppointmentEntity) {
+        repository.updateAppointment(x)
+        currentAppointment = x
     }
-   suspend fun deleteAppointment(_id: String) {
-        repository.deleteAppointment(_id)
+   suspend fun deleteAppointment(id: String) {
+        repository.deleteAppointment(id)
         currentAppointment = null
     }
     
@@ -182,8 +182,8 @@ class ModelFacade private constructor(context: Context) {
 	        }
     }
     
-    suspend fun retrieveAppointment(_val: String): Appointment? {
-            return getAppointmentByPK2(_val)
+    suspend fun retrieveAppointment(value: String): Appointment? {
+            return getAppointmentByPK2(value)
     }
 
     suspend fun allAppointmentAppointmentIds(): ArrayList<String> {
@@ -205,8 +205,8 @@ class ModelFacade private constructor(context: Context) {
         return currentAppointment
     }
 
-    suspend fun persistAppointment(_x: Appointment) {
-        val vo = AppointmentEntity(_x.appointmentId, _x.code)
+    suspend fun persistAppointment(x: Appointment) {
+        val vo = AppointmentEntity(x.appointmentId, x.code)
         repository.updateAppointment(vo)
         currentAppointment = vo
     }
@@ -221,7 +221,7 @@ class ModelFacade private constructor(context: Context) {
 	}
 
 	fun listPatient(): List<PatientVO> {
-        val patients: ArrayList<Patient> = Patient.Patient_allInstances
+        val patients: ArrayList<Patient> = Patient.PatientAllInstances
 		   currentPatients.clear()
 		   for (i in patients.indices) {
 			   currentPatients.add(PatientVO(patients[i]))
@@ -231,7 +231,7 @@ class ModelFacade private constructor(context: Context) {
 	}
 	
 	fun listAllPatient(): ArrayList<Patient> {
-		  val patients: ArrayList<Patient> = Patient.Patient_allInstances    
+		  val patients: ArrayList<Patient> = Patient.PatientAllInstances    
 		  return patients
 	}
 			    
@@ -243,12 +243,12 @@ class ModelFacade private constructor(context: Context) {
         return res
     }
 
-    fun getPatientByPK(_val: String): Patient? {
-        return Patient.Patient_index[_val]
+    fun getPatientByPK(value: String): Patient? {
+        return Patient.PatientIndex[value]
     }
     
-    fun retrievePatient(_val: String): Patient? {
-            return getPatientByPK(_val)
+    fun retrievePatient(value: String): Patient? {
+            return getPatientByPK(value)
         }
 
     fun allPatientPatientIds(): ArrayList<String> {
@@ -269,9 +269,9 @@ class ModelFacade private constructor(context: Context) {
         return currentPatient
     }
 
-    fun persistPatient(_x: Patient) {
-        val vo = PatientVO(_x)
-        cdb.persistPatient(_x)
+    fun persistPatient(x: Patient) {
+        val vo = PatientVO(x)
+        cdb.persistPatient(x)
         currentPatient = vo
     }
 	
