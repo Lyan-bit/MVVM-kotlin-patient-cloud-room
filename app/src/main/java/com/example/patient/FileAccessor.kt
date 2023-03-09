@@ -13,7 +13,7 @@ class FileAccessor (context: Context) {
 
         fun createFile(filename: String)
         { try
-        { val newFile = File(myContext.filesDir, filename) }
+        { File(myContext.filesDir, filename) }
         catch (_e: Exception) { _e.printStackTrace() }
         }
 
@@ -42,7 +42,9 @@ class FileAccessor (context: Context) {
                     outStrm.write(item + "\n")
                 }
             }
-            catch (_ix: IOException) { }
+            catch (_ix: IOException) { 
+                _ix.printStackTrace()
+            }
             outStrm.close()
         }
         catch (e: Exception) { e.printStackTrace() }
