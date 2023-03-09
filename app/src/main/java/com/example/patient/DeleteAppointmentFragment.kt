@@ -82,6 +82,7 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 		try {
 			imm.hideSoftInputFromWindow(v.windowToken, 0)
 		} catch (_e: Exception) {
+			_e.printStackTrace()
 		}
 
 		when (v.id) {
