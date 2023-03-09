@@ -49,9 +49,9 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 		appointmentIdTextField = root.findViewById(R.id.deleteAppointmentappointmentIdField)
 		deleteAppointmentSpinner = root.findViewById(R.id.deleteAppointmentSpinner)
 
-		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { Appointmentid ->
-			Appointmentid.let {
-				allAppointmentappointmentIds = Appointmentid
+		model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { appointmentId ->
+			appointmentId.let {
+				allAppointmentappointmentIds = appointmentId
 				val deleteAppointmentAdapter =
 					ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allAppointmentappointmentIds)
 				deleteAppointmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -73,7 +73,9 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 		}
 	}
 
-	override fun onNothingSelected(_parent: AdapterView<*>?) {}
+	override fun onNothingSelected(_parent: AdapterView<*>?) {
+	//onNothingSelected
+	}
 
 	override fun onClick(v: View) {
 		val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -84,15 +86,15 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 
 		when (v.id) {
 			R.id.deleteAppointmentOK-> {
-				deleteAppointmentOK(v)
+				deleteAppointmentOK()
 			}
 			R.id.deleteAppointmentCancel-> {
-				deleteAppointmentCancel(v)
+				deleteAppointmentCancel()
 			}
 		}
 	}
 
-	private fun deleteAppointmentOK(_v: View?) {
+	private fun deleteAppointmentOK() {
 		appointmentIdData = appointmentIdTextField.text.toString()
 		appointmentBean.setAppointmentId(appointmentIdData)
 		if (appointmentBean.isDeleteAppointmentError(allAppointmentappointmentIds)) {
@@ -107,7 +109,7 @@ class DeleteAppointmentFragment : Fragment(), View.OnClickListener, AdapterView.
 		}
 	}
 
-	private fun deleteAppointmentCancel(_v: View?) {
+	private fun deleteAppointmentCancel() {
 		appointmentBean.resetData()
 		appointmentIdTextField.setText("")
 	}
