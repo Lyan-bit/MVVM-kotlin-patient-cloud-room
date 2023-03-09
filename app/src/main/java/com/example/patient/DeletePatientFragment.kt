@@ -80,7 +80,8 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 	try {
 		imm.hideSoftInputFromWindow(v.windowToken, 0)
 		} catch (_e: Exception) {
-	}
+		_e.printStackTrace()
+		}
 
 	when (v.id) {
 		R.id.crudPatientOK-> {
