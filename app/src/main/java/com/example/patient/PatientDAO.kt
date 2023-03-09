@@ -30,7 +30,7 @@ class PatientDAO {
         }
 
         fun isCached(id: String?): Boolean {
-            val x: Patient = Patient.PatientIndex.get(id) ?: return false
+            Patient.PatientIndex.get(id) ?: return false
             return true
         }
 
