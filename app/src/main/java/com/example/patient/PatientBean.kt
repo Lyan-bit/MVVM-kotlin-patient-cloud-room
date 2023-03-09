@@ -11,6 +11,7 @@ class PatientBean(_c: Context) {
     private var appointmentId = ""
 
     private var errors = ArrayList<String>()
+    private var checkParameter = "is not exist"
 
     fun setPatientId(patientIdx: String) {
 	 patientId = patientIdx
@@ -73,7 +74,7 @@ class PatientBean(_c: Context) {
        errors.clear()
 			
 			if (!allPatientpatientIds.contains(patientId)) {
-				errors.add("The patientId is not exist")
+				errors.add("patientId" + checkParameter)
 		    }
           if (patientId != "") {
 	  //ok
@@ -105,7 +106,7 @@ class PatientBean(_c: Context) {
    fun isDeletePatientError(allPatientpatientIds: List<String>): Boolean {
         errors.clear()
 			 if (!allPatientpatientIds.contains(patientId)) {
-			    errors.add("The patientId is not exist")
+			    errors.add("patientId" + checkParameter)
         }
         return errors.size > 0
 		}    
@@ -114,7 +115,7 @@ class PatientBean(_c: Context) {
 	fun isSearchPatientIdError(allPatientIds: List<String>): Boolean {
     	   errors.clear()
    	       if (!allPatientIds.contains(patientId)) {
-    	       errors.add("The patientId is not exist")
+    	       errors.add("patientId" + checkParameter)
     	   }
            return errors.size > 0
     	}
