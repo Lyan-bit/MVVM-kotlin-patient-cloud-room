@@ -73,18 +73,19 @@ class CreatePatientFragment : Fragment(), View.OnClickListener {
 		try {
 			imm.hideSoftInputFromWindow(v.windowToken, 0)
 		} catch (_e: Exception) {
+			_e.printStackTrace()
 		}
 		when (v.id) {
 			R.id.crudPatientOK-> {
-				crudPatientOK(v)
+				crudPatientOK()
 			}
 			R.id.crudPatientCancel-> {
-				crudPatientCancel(v)
+				crudPatientCancel()
 			}
 		}
 	}
 
-	private fun crudPatientOK (_v: View) {
+	private fun crudPatientOK () {
 		patientIdData = patientIdTextField.text.toString()
 		patientBean.setPatientId(patientIdData)
 		nameData = nameTextField.text.toString()
@@ -104,7 +105,7 @@ class CreatePatientFragment : Fragment(), View.OnClickListener {
 			}
 	}
 
-	private fun crudPatientCancel (_v: View) {
+	private fun crudPatientCancel () {
 		patientBean.resetData()
 		patientIdTextField.setText("")
 		nameTextField.setText("")
