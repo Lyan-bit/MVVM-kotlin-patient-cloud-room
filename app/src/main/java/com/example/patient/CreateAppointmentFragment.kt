@@ -70,18 +70,19 @@ class CreateAppointmentFragment : Fragment(), View.OnClickListener {
 		try {
 			imm.hideSoftInputFromWindow(v.windowToken, 0)
 		} catch (_e: Exception) {
+			_e.printStackTrace()
 		}
 		when (v.id) {
 			R.id.createAppointmentOK-> {
-				createAppointmentOK(v)
+				createAppointmentOK()
 			}
 			R.id.createAppointmentCancel-> {
-				createAppointmentCancel(v)
+				createAppointmentCancel()
 			}
 		}
 	}
 
-	private fun createAppointmentOK (_v: View) {
+	private fun createAppointmentOK () {
 		appointmentIdData = appointmentIdTextField.text.toString()
 		appointmentBean.setAppointmentId(appointmentIdData)
 		codeData = codeTextField.text.toString()
@@ -99,7 +100,7 @@ class CreateAppointmentFragment : Fragment(), View.OnClickListener {
 			}
 	}
 
-	private fun createAppointmentCancel (_v: View) {
+	private fun createAppointmentCancel () {
 		appointmentBean.resetData()
 		appointmentIdTextField.setText("")
 		codeTextField.setText("")
