@@ -1,8 +1,6 @@
 package com.example.patient
 
 import android.content.Context
-import java.lang.Exception
-import java.util.regex.Pattern
 
 class PatientBean(_c: Context) {
 
