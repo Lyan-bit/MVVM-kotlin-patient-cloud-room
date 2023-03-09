@@ -1,8 +1,6 @@
 package com.example.patient
 
 import android.content.Context
-import java.util.regex.Pattern
-
 
 class AppointmentBean(_c: Context) {
 
@@ -31,11 +29,15 @@ class AppointmentBean(_c: Context) {
 
 		errors.clear()
 
-		if (appointmentId != "") {}
+		if (appointmentId != "") {
+		//ok
+		}
 		else {
 			errors.add("appointmentId cannot be empty")
 		}
-		if (code != "") {}
+		if (code != "") {
+		//ok
+		}
 		else {
 			errors.add("code cannot be empty")
 		}
@@ -50,6 +52,7 @@ class AppointmentBean(_c: Context) {
 
 	fun isListAppointmentError(): Boolean {
 		errors.clear()
+		//isListAppointmentError
 		return errors.size > 0
 	}
 
@@ -61,11 +64,15 @@ class AppointmentBean(_c: Context) {
 			errors.add("appointmentId" + checkParameter)
 		}
 
-		if (appointmentId != "") {}
+		if (appointmentId != "") {
+		//ok
+		}
 		else {
 			errors.add("appointmentId cannot be empty")
 		}
-		if (code != "") {}
+		if (code != "") {
+		//ok
+		}
 		else {
 			errors.add("code cannot be empty")
 		}
@@ -106,6 +113,7 @@ class AppointmentBean(_c: Context) {
 
 	fun isAddPatientattendsAppointmentError(): Boolean {
 		errors.clear()
+		//isAddPatientattendsAppointmentError
 		return errors.size > 0
 	}
 
