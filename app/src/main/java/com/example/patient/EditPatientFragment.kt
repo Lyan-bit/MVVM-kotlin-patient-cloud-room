@@ -80,7 +80,9 @@ package com.example.patient
 			}
 		}
 
-		override fun onNothingSelected(_parent: AdapterView<*>?) {}
+		override fun onNothingSelected(_parent: AdapterView<*>?) {
+			//onNothingSelected
+		}
 
 		override fun onClick(v: View) {
 		val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -91,18 +93,18 @@ package com.example.patient
 
 		when (v.id) {
 			R.id.crudPatientSearch-> {
-				crudPatientSearch(v)
+				crudPatientSearch()
 			}
 			R.id.crudPatientOK-> {
-				crudPatientOK(v)
+				crudPatientOK()
 			}
 			R.id.crudPatientCancel-> {
-				crudPatientCancel(v)
+				crudPatientCancel()
 			}
 			  }
 	    }
 	    
-		private fun crudPatientSearch(_v: View?) {
+		private fun crudPatientSearch() {
 			patientIdData = patientIdTextField.text.toString()
 			patientBean.setPatientId(patientIdData)
 			
@@ -122,7 +124,7 @@ package com.example.patient
 			}
 		}
 
-		private fun crudPatientOK(_v: View?) {
+		private fun crudPatientOK() {
 			patientIdData = patientIdTextField.text.toString()
 				patientBean.setPatientId(patientIdData)
 		nameData = nameTextField.text.toString()
@@ -142,7 +144,7 @@ package com.example.patient
 			}
 			}
 
-		private fun crudPatientCancel(_v: View?) {
+		private fun crudPatientCancel() {
 			patientBean.resetData()
 				patientIdTextField.setText("")
 		nameTextField.setText("")
