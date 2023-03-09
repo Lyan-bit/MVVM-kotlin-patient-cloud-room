@@ -48,9 +48,9 @@ package com.example.patient
 				appointmentBean = AppointmentBean(myContext)
 			editAppointmentSpinner = root.findViewById(R.id.editAppointmentSpinner)
 	
-			model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { Appointmentid ->
-				Appointmentid.let {
-				allAppointmentappointmentIds = Appointmentid
+			model.allAppointmentAppointmentIds.observe( viewLifecycleOwner, androidx.lifecycle.Observer { appointmentId ->
+				appointmentId.let {
+				allAppointmentappointmentIds = appointmentId
 				val editAppointmentAdapter =
 				ArrayAdapter(myContext, android.R.layout.simple_spinner_item, allAppointmentappointmentIds)
 				editAppointmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -78,7 +78,9 @@ package com.example.patient
 			}
 		}
 
-		override fun onNothingSelected(_parent: AdapterView<*>?) {}
+		override fun onNothingSelected(_parent: AdapterView<*>?) {
+			//onNothingSelected
+		}
 
 		override fun onClick(v: View) {
 		val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -89,18 +91,18 @@ package com.example.patient
 
 		when (v.id) {
 			R.id.editAppointmentSearch-> {
-				editAppointmentSearch(v)
+				editAppointmentSearch()
 			}
 			R.id.editAppointmentOK-> {
-				editAppointmentOK(v)
+				editAppointmentOK()
 			}
 			R.id.editAppointmentCancel-> {
-				editAppointmentCancel(v)
+				editAppointmentCancel()
 			}
 			  }
 	    }
 	    
-		private fun editAppointmentSearch(_v: View?) {
+		private fun editAppointmentSearch() {
 			appointmentIdData = appointmentIdTextField.text.toString()
 			appointmentBean.setAppointmentId(appointmentIdData)
 			
@@ -119,7 +121,7 @@ package com.example.patient
 			}
 		}
 
-		private fun editAppointmentOK(_v: View?) {
+		private fun editAppointmentOK() {
 			appointmentIdData = appointmentIdTextField.text.toString()
 				appointmentBean.setAppointmentId(appointmentIdData)
 		codeData = codeTextField.text.toString()
@@ -137,7 +139,7 @@ package com.example.patient
 			}
 			}
 
-		private fun editAppointmentCancel(_v: View?) {
+		private fun editAppointmentCancel() {
 			appointmentBean.resetData()
 				appointmentIdTextField.setText("")
 		codeTextField.setText("")
