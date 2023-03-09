@@ -1,7 +1,6 @@
 package com.example.patient
 
 import java.util.HashMap
-import java.util.HashSet
 
 class Patient {
 
