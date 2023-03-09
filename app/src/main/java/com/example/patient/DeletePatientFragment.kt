@@ -71,7 +71,9 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 		}
 	}
 
-	override fun onNothingSelected(_parent: AdapterView<*>?) {}
+	override fun onNothingSelected(_parent: AdapterView<*>?) {
+		//onNothingSelected
+	}
 
 	override fun onClick(v: View) {
 	val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -82,15 +84,15 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 
 	when (v.id) {
 		R.id.crudPatientOK-> {
-			crudPatientOK(v)
+			crudPatientOK()
 		}
 		R.id.crudPatientCancel-> {
-			crudPatientCancel(v)
+			crudPatientCancel()
 		}
 	  }
     }
 
-	private fun crudPatientOK(_v: View?) {
+	private fun crudPatientOK() {
 		patientIdData = patientIdTextField.text.toString()
 		patientBean.setPatientId(patientIdData)
 		if (patientBean.isDeletePatientError(allPatientpatientIds)) {
@@ -105,7 +107,7 @@ class DeletePatientFragment : Fragment(), View.OnClickListener, AdapterView.OnIt
 		}
 	}
 
-	private fun crudPatientCancel(_v: View?) {
+	private fun crudPatientCancel() {
 		patientBean.resetData()
 		patientIdTextField.setText("")
 	}
