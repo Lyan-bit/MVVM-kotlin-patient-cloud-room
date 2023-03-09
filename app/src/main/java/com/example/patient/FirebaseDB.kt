@@ -34,10 +34,11 @@ class FirebaseDB() {
                         PatientDAO.parseRaw(x)
                     }
                     // Delete local objects which are not in the cloud:
-                    val _locals = ArrayList<Patient>()
+                    val locals = ArrayList<Patient>()
                     locals.addAll(Patient.PatientAllInstances)
                     for (x in locals) {
                         if (keys.contains(x.patientId)) {
+                            //check
                         } else {
                             Patient.killPatient(x.patientId)
                         }
