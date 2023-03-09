@@ -95,26 +95,29 @@ class RemovePatientattendsAppointmentFragment : Fragment(), View.OnClickListener
         }
     }
 
-    override fun onNothingSelected(_parent: AdapterView<*>?) {}
+    override fun onNothingSelected(_parent: AdapterView<*>?) {
+    //onNothingSelected
+    }
 
     override fun onClick(v: View) {
         val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         try {
             imm.hideSoftInputFromWindow(v.windowToken, 0)
         } catch (_e: Exception) {
+            e.printStackTrace()
         }
 
         when (v.id) {
             R.id.removePatientattendsAppointmentOK -> {
-                removePatientattendsAppointmentOK(v)
+                removePatientattendsAppointmentOK()
             }
             R.id.removePatientattendsAppointmentCancel -> {
-                removePatientattendsAppointmentCancel(v)
+                removePatientattendsAppointmentCancel()
             }
         }
     }
 
-    private fun removePatientattendsAppointmentOK(_v: View?) {
+    private fun removePatientattendsAppointmentOK() {
         patientIdData = patientIdTextField.getText().toString() + ""
         appointmentBean.setPatientId(patientIdData)
         appointmentIdData = appointmentIdTextField.getText().toString() + ""
@@ -130,7 +133,7 @@ class RemovePatientattendsAppointmentFragment : Fragment(), View.OnClickListener
         }
     }
 
-    private fun removePatientattendsAppointmentCancel(_v: View?) {
+    private fun removePatientattendsAppointmentCancel() {
         appointmentBean.resetData()
         patientIdTextField.setText("")
         appointmentIdTextField.setText("")
