@@ -1,6 +1,5 @@
 package com.example.patient
 
-import com.example.patient.AppointmentEntity
 import kotlinx.coroutines.flow.Flow
 
 interface AppointmentRepository {
