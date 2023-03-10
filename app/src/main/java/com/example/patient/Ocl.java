@@ -1,5 +1,4 @@
-package com.example.patient; // Place in the relevant package directory of your application.
-
+package com.example.patient;  // Place in the relevant package directory of your application.
 
 /******************************
 * Copyright (c) 2003--2022 Kevin Lano
@@ -12,6 +11,7 @@ package com.example.patient; // Place in the relevant package directory of your 
 /* OCL library for Java version 8+ */
 
 
+import android.util.Log;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -25,15 +25,10 @@ import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.function.Function;
 
-// @FunctionalInterface
-// interface Predicate<T> {
-//     boolean test(T t);
-// }
-
-// @FunctionalInterface
-// interface Evaluation<S,T> {
-//      T evaluate(S s);
-// }
+ @FunctionalInterface
+ interface Evaluation<S,T> {
+      T evaluate(S s);
+ }
 
 class OclMaplet<K,T>
 { K key;
@@ -52,115 +47,121 @@ class OclMaplet<K,T>
     }
 
     public static void displayString(String s)
-    { System.out.println(s); }
+    { Log.i("Ocl", s); }
 
     public static void displayint(int i)
-    { System.out.println("" + i); }
+    { Log.i("Ocl", "" + i); }
 
     public static void displaylong(long i)
-    { System.out.println("" + i); }
+    { Log.i("Ocl", "" + i); }
 
     public static void displayboolean(boolean b)
-    { System.out.println("" + b); }
+    { Log.i("Ocl", "" + b); }
 
     public static void displaydouble(double d)
-    { System.out.println("" + d); }
+    { Log.i("Ocl", "" + d); }
 
     public static void displaySequence(List s)
-    { System.out.println(s); }
+    { Log.i("Ocl", s.toString()); }
 
     public static void displaySet(Set s)
-    { System.out.println(s); }
+    { Log.i("Ocl", s.toString()); }
 
     public static void displayMap(Map s)
-    { System.out.println(s); }
+    {Log.i("Ocl", s.toString()); }
 
     public static void displayOclProcess(OclProcess s)
-    { System.out.println(s.actualThread); }
+    { Log.i("Ocl", s.actualThread.toString()); }
 
     public static void displayOclType(OclType s)
-    { System.out.println(s.actualMetatype); }
+    { Log.i("Ocl", s.actualMetatype.toString()); }
 
 
-    public static <T> HashSet<T> selectSet(Set<T> _s, Predicate<T> _f)
+    public static <T> HashSet<T> selectSet(Set<T> s, Predicate<T> f)
     { HashSet<T> result = new HashSet<T>();
-      for (T _x : _s)
-      { if (_f.test(_x))
-        { result.add(_x); }
+      for (T x : s)
+      { if (f.test(x))
+        { result.add(x); }
       }
       return result;
     }
 
-    public static <T> HashSet<T> rejectSet(Set<T> _s, Predicate<T> _f)
+    public static <T> HashSet<T> rejectSet(Set<T> s, Predicate<T> f)
     { HashSet<T> result = new HashSet<T>();
-      for (T _x : _s)
-      { if (_f.test(_x)) { }
+      for (T x : s)
+      { if (f.test(x))     { 
+    	//catch
+    }
         else
-		{ result.add(_x); }
+		{ result.add(x); }
       }
       return result;
     }
 
-    public static <S,T> HashSet<T> collectSet(Set<S> _s, Function<S,T> _f)
+    public static <S,T> HashSet<T> collectSet(Set<S> s, Function<S,T> f)
     { HashSet<T> result = new HashSet<T>();
-      for (S _x : _s)
-      { result.add(_f.apply(_x)); }
+      for (S x : s)
+      { result.add(f.apply(x)); }
       return result;
     }
 
-    public static <T> ArrayList<T> selectSequence(ArrayList<T> _s, Predicate<T> _f)
+    public static <T> ArrayList<T> selectSequence(ArrayList<T> s, Predicate<T> f)
     { ArrayList<T> result = new ArrayList<T>();
-      for (int i = 0; i < _s.size(); i++)
-      { T _x = (T) _s.get(i);
-        if (_f.test(_x))
-        { result.add(_x); }
+      for (int i = 0; i < s.size(); i++)
+      { T x = (T) s.get(i);
+        if (f.test(x))
+        { result.add(x); }
       }
       return result;
     }
 
-    public static <T> ArrayList<T> rejectSequence(ArrayList<T> _s, Predicate<T> _f)
+    public static <T> ArrayList<T> rejectSequence(ArrayList<T> s, Predicate<T> f)
     { ArrayList<T> result = new ArrayList<T>();
-      for (int i = 0; i < _s.size(); i++)
-      { T _x = (T) _s.get(i);
-        if (_f.test(_x)) { }
+      for (int i = 0; i < s.size(); i++)
+      { T x = (T) s.get(i);
+        if (f.test(x))     { 
+    	//catch
+    }
         else
-        { result.add(_x); }
+        { result.add(x); }
       }
       return result;
     }
 
-    public static <S,T> ArrayList<T> collectSequence(List<S> _s, Function<S,T> _f)
+    public static <S,T> ArrayList<T> collectSequence(List<S> s, Function<S,T> f)
     { ArrayList<T> result = new ArrayList<T>();
-      for (int i = 0; i < _s.size(); i++)
-      { S _x = (S) _s.get(i);
-        result.add(_f.apply(_x));
+      for (int i = 0; i < s.size(); i++)
+      { S x = (S) s.get(i);
+        result.add(f.apply(x));
       }
       return result;
     }
 
-    public static <T> boolean forAll(Collection<T> _s, Predicate<T> _f)
+    public static <T> boolean forAll(Collection<T> s, Predicate<T> f)
     { boolean result = true;
-      for (T _x : _s)
-      { if (_f.test(_x)) { }
+      for (T x : s)
+      { if (f.test(x))     { 
+    	//catch
+    }
         else
         { return false; }
       }
       return result;
     }
 
-    public static <T> boolean exists(Collection<T> _s, Predicate<T> _f)
+    public static <T> boolean exists(Collection<T> s, Predicate<T> f)
     { boolean result = false;
-      for (T _x : _s)
-      { if (_f.test(_x))
+      for (T x : s)
+      { if (f.test(x))
         { return true; }
       }
       return result;
     }
 
-    public static <T> boolean exists1(Collection<T> _s, Predicate<T> _f)
+    public static <T> boolean exists1(Collection<T> s, Predicate<T> f)
     { boolean found = false;
-      for (T _x : _s)
-      { if (_f.test(_x))
+      for (T x : s)
+      { if (f.test(x))
         { if (found)
           { return false; }
           found = true;
@@ -169,47 +170,47 @@ class OclMaplet<K,T>
       return found;
     }
 
-    public static <T> T any(Collection<T> _s, Predicate<T> _f)
-    { for (T _x : _s)
-      { if (_f.test(_x))
-        { return _x; }
+    public static <T> T any(Collection<T> s, Predicate<T> f)
+    { for (T x : s)
+      { if (f.test(x))
+        { return x; }
       }
       return null;
     }
 
-    public static <S,T> HashSet<T> unionAll(Collection<S> _s, Function<S,Collection<T>> _f)
+    public static <S,T> HashSet<T> unionAll(Collection<S> s, Function<S,Collection<T>> f)
     { HashSet<T> result = new HashSet<T>();
-      for (S _x : _s)
-      { result.addAll(_f.apply(_x)); }
+      for (S x : s)
+      { result.addAll(f.apply(x)); }
       return result;
     }
 
-    public static <S,T> ArrayList<T> concatenateAll(List<S> _s, Function<S,List<T>> _f)
+    public static <S,T> ArrayList<T> concatenateAll(List<S> s, Function<S,List<T>> f)
     { ArrayList<T> result = new ArrayList<T>();
-      for (int i = 0; i < _s.size(); i++)
-      { S _x = (S) _s.get(i);
-        result.addAll(_f.apply(_x));
+      for (int i = 0; i < s.size(); i++)
+      { S x = (S) s.get(i);
+        result.addAll(f.apply(x));
       }
       return result;
     }
 
-    public static <S,T> HashSet<T> intersectAllSet(Collection<S> _s, Function<S,Set<T>> _f)
+    public static <S,T> HashSet<T> intersectAllSet(Collection<S> s, Function<S,Set<T>> f)
     { HashSet<T> result = new HashSet<T>();
-      if (_s.size() == 0) { return result; }
-      S s1 = Ocl.any(_s);
-      result.addAll(_f.apply(s1));
-      for (S _x : _s)
-      { result.retainAll(_f.apply(_x)); }
+      if (s.size() == 0) { return result; }
+      S s1 = Ocl.any(s);
+      result.addAll(f.apply(s1));
+      for (S x : s)
+      { result.retainAll(f.apply(x)); }
       return result;
     }
 
-    public static <S,T> ArrayList<T> intersectAllSequence(Collection<S> _s, Function<S,List<T>> _f)
+    public static <S,T> ArrayList<T> intersectAllSequence(Collection<S> s, Function<S,List<T>> f)
     { ArrayList<T> result = new ArrayList<T>();
-      if (_s.size() == 0) { return result; }
-      S s1 = Ocl.any(_s);
-      result.addAll(_f.apply(s1));
-      for (S _x : _s)
-      { result.retainAll(_f.apply(_x)); }
+      if (s.size() == 0) { return result; }
+      S s1 = Ocl.any(s);
+      result.addAll(f.apply(s1));
+      for (S x : s)
+      { result.retainAll(f.apply(x)); }
       return result;
     }
 
@@ -354,20 +355,20 @@ class OclMaplet<K,T>
       return s;
     }
 
-    public static <T> HashSet<T> excludingSet(Set<T> _s, T _x)
+    public static <T> HashSet<T> excludingSet(Set<T> s, T x)
     { HashSet<T> result = new HashSet<T>();
-      result.addAll(_s);
+      result.addAll(s);
       HashSet<T> rem = new HashSet<T>();
-      rem.add(_x);
+      rem.add(x);
       result.removeAll(rem);
       return result;
     }
 
-    public static <T> ArrayList<T> excludingSequence(List<T> _s, T _x)
+    public static <T> ArrayList<T> excludingSequence(List<T> s, T x)
     { ArrayList<T> result = new ArrayList<T>();
-      result.addAll(_s);
+      result.addAll(s);
       HashSet<T> rem = new HashSet<T>();
-      rem.add(_x);
+      rem.add(x);
       result.removeAll(rem);
       return result;
     }
@@ -381,7 +382,9 @@ class OclMaplet<K,T>
     public static <T> ArrayList<T> asOrderedSet(Collection<T> c)
     { ArrayList<T> res = new ArrayList<T>();
       for (T x : c)
-      { if (res.contains(x)) { }
+      { if (res.contains(x))     { 
+    	//catch
+    }
         else
         { res.add(x); }
       }
@@ -478,13 +481,17 @@ class OclMaplet<K,T>
 
   public static <T> Set<T> symmetricDifference(Collection<T> a, Collection<T> b)
   { Set<T> res = new HashSet<T>();
-    for (T _a : a)
-    { if (b.contains(_a)) { }
-      else { res.add(_a); }
+    for (T x : a)
+    { if (b.contains(x))     { 
+    	//catch
     }
-    for (T _b : b)
-    { if (a.contains(_b)) { }
-      else { res.add(_b); }
+      else { res.add(x); }
+    }
+    for (T y : b)
+    { if (a.contains(y))     { 
+    	//catch
+    }
+      else { res.add(y); }
     }
     return res;
   }
@@ -609,10 +616,10 @@ class OclMaplet<K,T>
 
   public static <T> ArrayList<T> sortedBy(final ArrayList<T> a, ArrayList<? extends Comparable> f)
   { int i = a.size()-1;
-    Map<T,Comparable> f_map = new HashMap<T,Comparable>();
+    Map<T,Comparable> fMap = new HashMap<T,Comparable>();
     for (int j = 0; j < a.size(); j++)
-    { f_map.put(a.get(j), (Comparable) f.get(j)); }
-    return mergeSort(a,f_map,0,i);
+    { fMap.put(a.get(j), (Comparable) f.get(j)); }
+    return mergeSort(a,fMap,0,i);
   }
 
   static <T> ArrayList<T> mergeSort(final ArrayList<T> a, Map<T,Comparable> f, int ind1, int ind2)
@@ -765,11 +772,11 @@ class OclMaplet<K,T>
 
 
   public static ArrayList<String> characters(String str)
-  { char[] _chars = str.toCharArray();
-    ArrayList<String> _res = new ArrayList<String>();
-    for (int i = 0; i < _chars.length; i++)
-    { _res.add("" + _chars[i]); }
-    return _res;
+  { char[] chars = str.toCharArray();
+    ArrayList<String> res = new ArrayList<String>();
+    for (int i = 0; i < chars.length; i++)
+    { res.add("" + chars[i]); }
+    return res;
   }
 
 
@@ -787,7 +794,7 @@ class OclMaplet<K,T>
 
 
     public static <T> T last(List<T> v)
-    { if (v.size() == 0) { return null; }
+    { if (v.isEmpty()) { return null; }
       return v.get(v.size() - 1);
     }
 
@@ -795,7 +802,7 @@ class OclMaplet<K,T>
 
     public static <T> ArrayList<List<T>> subcollections(ArrayList<T> v)
     { ArrayList<List<T>> res = new ArrayList<List<T>>();
-      if (v.size() == 0)
+      if (v.isEmpty())
       { res.add(new ArrayList<T>()); return res; }
       if (v.size() == 1)
       { res.add(new ArrayList<T>()); res.add(v); return res;
@@ -816,19 +823,20 @@ class OclMaplet<K,T>
 
     public static <T> HashSet<Set<T>> subcollections(HashSet<T> v)
     { HashSet<Set<T>> res = new HashSet<Set<T>>();
-      if (v.size() == 0) { res.add(new HashSet<T>()); return res; }
+      if (v.isEmpty()) { res.add(new HashSet<T>()); return res; }
       if (v.size() == 1) { res.add(new HashSet<T>()); res.add(v); return res;
        }
       HashSet<T> s = new HashSet<T>();
-      T x = null; int _i = 0;
-      for (T _o : v)
-      { if (_i == 0) { x = _o; _i++; }
-         else { s.add(_o); }
+      T x = null; 
+      int i = 0;
+      for (T o : v)
+      { if (i == 0) { x = o; i++; }
+         else { s.add(o); }
       }
       HashSet<Set<T>> scs = subcollections(s);
       res.addAll(scs);
-      for (Set<T> _obj : scs)
-      { HashSet<T> sc = (HashSet<T>) _obj;
+      for (Set<T> obj : scs)
+      { HashSet<T> sc = (HashSet<T>) obj;
         HashSet<T> scc = new HashSet<T>();
         scc.add(x); scc.addAll(sc); res.add(scc);
       }
@@ -879,8 +887,8 @@ class OclMaplet<K,T>
   { HashSet<T> res = new HashSet<T>();
     if (se.size() == 0) { return res; }
     res.addAll((Collection<T>) Ocl.any(se));
-    for (Collection<T> _o : se)
-    { res.retainAll(_o); }
+    for (Collection<T> o : se)
+    { res.retainAll(o); }
     return res;
   }
 
@@ -888,8 +896,8 @@ class OclMaplet<K,T>
 
   public static <T> HashSet<T> unionAll(Collection<Collection<T>> se)
   { HashSet<T> res = new HashSet<T>();
-    for (Collection<T> _o : se)
-    { res.addAll(_o); }
+    for (Collection<T> o : se)
+    { res.addAll(o); }
     return res;
   }
 
@@ -986,7 +994,7 @@ class OclMaplet<K,T>
   public static String byte2char(int b)
   { try { byte[] bb = {(byte) b};
       return new String(bb); }
-    catch (Exception _e)
+    catch (Exception e)
     { return ""; }
   }
 
@@ -999,7 +1007,7 @@ class OclMaplet<K,T>
 
  public static boolean isInteger(String str)
  { try { Integer.parseInt(str); return true; }
-   catch (Exception _e) { return false; }
+   catch (Exception e) { return false; }
  }
 
 
@@ -1007,7 +1015,7 @@ class OclMaplet<K,T>
   { try { double d = Double.parseDouble(str);
           if (Double.isNaN(d)) { return false; }
           return true; }
-    catch (Exception _e) { return false; }
+    catch (Exception e) { return false; }
   }
 
 
@@ -1016,19 +1024,19 @@ class OclMaplet<K,T>
     { Long.parseLong(str);
       return true;
     }
-    catch (Exception _e)
+    catch (Exception e)
     { return false; }
   }
 
 
-  public static boolean oclIsTypeOf(Object x, String E)
+  public static boolean oclIsTypeOf(Object x, String e)
   { try {
-      if (x.getClass() == Class.forName(E))
+      if (x.getClass() == Class.forName(e))
       { return true; }
       else
       { return false; }
     }
-    catch (Exception e) { return false; }
+    catch (Exception ex) { return false; }
   }
 
 
@@ -1155,7 +1163,9 @@ class OclMaplet<K,T>
 
     for (D key : keys)
     { if (m2.containsKey(key))
-      { }
+          { 
+    	//catch
+    }
       else
       { res.put(key,m1.get(key));  }
     }
@@ -1179,7 +1189,9 @@ class OclMaplet<K,T>
 
     for (D key : keys)
     { if (v.equals(m.get(key)))
-      { }
+          { 
+    	//catch
+    }
       else
       { res.put(key,m.get(key));  }
     }
@@ -1223,7 +1235,9 @@ class OclMaplet<K,T>
     Set<D> keys = m1.keySet();
 
     for (D key : keys)
-    { if (ks.contains(key)) { }
+    { if (ks.contains(key))     { 
+    	//catch
+    }
       else
       { res.put(key,m1.get(key));  }
     }
@@ -1246,19 +1260,21 @@ class OclMaplet<K,T>
     Set<D> keys = m.keySet();
     for (D k : keys)
     { R value = m.get(k);
-      if (f.test(value)) {}
+      if (f.test(value)) {
+      	//value
+      }
       else
       { result.put(k,value); }
     }
     return result;
   }
 
-   public static <R,T> HashMap<String,T> collectMap(HashMap<String,R> m, Function<R,T> _f)
+   public static <R,T> HashMap<String,T> collectMap(HashMap<String,R> m, Function<R,T> f)
     { HashMap<String,T> result = new HashMap<String,T>();
       Set<String> keys = m.keySet();
       for (String k : keys)
       { R value = m.get(k);
-        result.put(k, _f.apply(value));
+        result.put(k, f.apply(value));
       }
       return result;
     }
@@ -1291,7 +1307,9 @@ class OclMaplet<K,T>
   { Set<D> keys = m.keySet();
     for (D k : keys)
     { R value = m.get(k);
-      if (f.test(value)) { }
+      if (f.test(value))     { 
+    	//catch
+    }
       else
       { return false; }
     }
@@ -1399,7 +1417,6 @@ class OclMaplet<K,T>
  { StringBuffer buff = new StringBuffer();
    int x = 0;
    int len = rows.length();
-   boolean instring = false;
    ArrayList<String> res = new ArrayList<String>();
    while (x < len)
    { char chr = rows.charAt(x);
