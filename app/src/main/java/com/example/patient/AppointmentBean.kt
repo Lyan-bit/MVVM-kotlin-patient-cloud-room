@@ -113,7 +113,9 @@ class AppointmentBean(_c: Context) {
 
 	fun isAddPatientattendsAppointmentError(): Boolean {
 		errors.clear()
-		//isAddPatientattendsAppointmentError
+		if (appointmentId != "") 
+		else 
+		errors.add("appointmentId" + checkParameter)
 		return errors.size > 0
 	}
 
@@ -124,7 +126,9 @@ class AppointmentBean(_c: Context) {
 
 	fun isRemovePatientattendsAppointmentError(): Boolean {
 		errors.clear()
-		//if statement
+		if (patientId != "") 
+		else 
+		errors.add(patientId + checkParameter)
 		return errors.size > 0
 	}
 
