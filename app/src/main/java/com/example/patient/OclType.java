@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 class OclType {
   static
-  { OclType.OclType_index = new HashMap<String,OclType>();
+  { OclType.oclTypeIndex = new HashMap<String,OclType>();
     OclType stringType = OclType.createByPKOclType("String");
     stringType.actualMetatype = String.class;
     OclType intType = OclType.createByPKOclType("int");
@@ -26,7 +26,9 @@ class OclType {
 
   public Class actualMetatype = null;
 
-  OclType() { }
+  OclType()     { 
+    	//catch
+    }
 
   OclType(String nme)
   { name = nme;
@@ -45,23 +47,23 @@ class OclType {
   }
 
   String name = ""; /* primary */
-  static Map<String,OclType> OclType_index;
+  static Map<String,OclType> oclTypeIndex;
 
   static OclType createByPKOclType(String namex)
-  { OclType result = OclType.OclType_index.get(namex);
+  { OclType result = OclType.oclTypeIndex.get(namex);
     if (result != null)
     { return result; }
     result = new OclType();
-    OclType.OclType_index.put(namex,result);
+    OclType.oclTypeIndex.put(namex,result);
     result.name = namex;
     return result; }
 
   static void killOclType(String namex)
-  { OclType rem = OclType_index.get(namex);
+  { OclType rem = oclTypeIndex.get(namex);
     if (rem == null) { return; }
     ArrayList<OclType> remd = new ArrayList<OclType>();
     remd.add(rem);
-    OclType_index.remove(namex);
+    oclTypeIndex.remove(namex);
   }
 
   ArrayList<OclAttribute> attributes = new ArrayList<OclAttribute>();
@@ -93,7 +95,7 @@ class OclType {
   public OclType getComponentType()
   {
     OclType result = null;
-    if (componentType.size() > 0)
+	if (!componentType.isEmpty())
     {
       result = Ocl.any(componentType);
     }
@@ -200,7 +202,7 @@ class OclType {
       }
     }
     OclType result = null;
-    if (superclasses.size() > 0)
+    if (!superclasses.isEmpty())
     { result = Ocl.any(superclasses); }
     return result;
   }
