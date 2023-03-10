@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:fullBackupContent="@xml/backup_rules"
         android:usesCleartextTraffic="true"
+        android:allowBackup="true"  
         android:theme="@style/Theme.Patient">
         <activity
             android:name=".MainActivity"
