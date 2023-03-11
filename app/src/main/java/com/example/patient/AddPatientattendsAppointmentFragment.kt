@@ -103,8 +103,8 @@ class AddPatientattendsAppointmentFragment : Fragment() , View.OnClickListener, 
         val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         try {
             imm.hideSoftInputFromWindow(v.windowToken, 0)
-        } catch (_e: Exception) {
-		_e.e.printStackTrace()
+        } catch (e: Exception) {
+		    e.printStackTrace()
         }
 
         when (v.id) {
