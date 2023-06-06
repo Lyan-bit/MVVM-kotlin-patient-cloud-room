@@ -24,8 +24,6 @@ class PatientBean(_c: Context) {
     fun setAppointmentId(appointmentIdx: String) {
 	 appointmentId = appointmentIdx
     }
-    
-
 
     fun resetData() {
 	  patientId = ""
@@ -56,7 +54,7 @@ class PatientBean(_c: Context) {
 	               errors.add("appointmentId cannot be empty")
 	         }
 	        
-	        return errors.size > 0
+	        return errors.isNotEmpty()
 	    }
 	    
 	    fun createPatient() {
@@ -95,7 +93,7 @@ class PatientBean(_c: Context) {
 	               errors.add("appointmentId cannot be empty")
 	         }
 
-       return errors.size > 0
+       return errors.isNotEmpty()
    }
        
    fun deletePatient() {
@@ -108,7 +106,7 @@ class PatientBean(_c: Context) {
 			 if (!allPatientpatientIds.contains(patientId)) {
 			    errors.add("patientId" + checkParameter)
         }
-        return errors.size > 0
+        return errors.isNotEmpty()
 		}    
 
 
@@ -117,14 +115,11 @@ class PatientBean(_c: Context) {
    	       if (!allPatientIds.contains(patientId)) {
     	       errors.add("patientId" + checkParameter)
     	   }
-           return errors.size > 0
+           return errors.isNotEmpty()
     	}
 
     fun errors(): String {
         return errors.toString()
     }
-
-
-
 }
 
