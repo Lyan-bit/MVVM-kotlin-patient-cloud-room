@@ -42,7 +42,7 @@ class AppointmentBean(_c: Context) {
 			errors.add("code cannot be empty")
 		}
 
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	suspend fun createAppointment() {
@@ -53,7 +53,7 @@ class AppointmentBean(_c: Context) {
 	fun isListAppointmentError(): Boolean {
 		errors.clear()
 		//isListAppointmentError
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 
@@ -77,7 +77,7 @@ class AppointmentBean(_c: Context) {
 			errors.add("code cannot be empty")
 		}
 
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	suspend fun editAppointment() {
@@ -90,7 +90,7 @@ class AppointmentBean(_c: Context) {
 		if (!allAppointmentappointmentIds.contains(appointmentId)) {
 			errors.add("appointmentId" + checkParameter)
 		}
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	suspend fun deleteAppointment() {
@@ -104,7 +104,7 @@ class AppointmentBean(_c: Context) {
 		if (!allAppointmentIds.contains(appointmentId)) {
 			errors.add("appointmentId" + checkParameter)
 		}
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	fun errors(): String {
@@ -116,7 +116,7 @@ class AppointmentBean(_c: Context) {
 		if (appointmentId != "") 
 		else 
 		errors.add("appointmentId" + checkParameter)
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	fun addPatientattendsAppointment() {
@@ -129,7 +129,7 @@ class AppointmentBean(_c: Context) {
 		if (patientId != "") 
 		else 
 		errors.add(patientId + checkParameter)
-		return errors.size > 0
+		return errors.isNotEmpty()
 	}
 
 	fun removePatientattendsAppointment() {
