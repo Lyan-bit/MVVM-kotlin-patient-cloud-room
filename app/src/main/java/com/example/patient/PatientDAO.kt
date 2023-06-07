@@ -14,7 +14,7 @@ class PatientDAO {
             if (command != null) {
                 res += command
             }
-            if (pars.size == 0) {
+            if (pars.isEmpty()) {
                 return res
             }
             res = "$res?"
@@ -30,12 +30,12 @@ class PatientDAO {
         }
 
         fun isCached(id: String?): Boolean {
-            Patient.PatientIndex.get(id) ?: return false
+            Patient.PatientIndex[id] ?: return false
             return true
         }
 
         fun getCachedInstance(id: String): Patient? {
-            return Patient.PatientIndex.get(id)
+            return Patient.PatientIndex[id]
         }
 
       fun parseCSV(line: String?): Patient? {
@@ -43,7 +43,7 @@ class PatientDAO {
               return null
           }
           val line1vals: ArrayList<String> = Ocl.tokeniseCSV(line)
-          var patientx: Patient? = Patient.PatientIndex.get(line1vals[0])
+          var patientx: Patient? = Patient.PatientIndex[line1vals[0]]
           if (patientx == null) {
               patientx = Patient.createByPKPatient(line1vals[0])
           }
@@ -59,7 +59,7 @@ class PatientDAO {
                 null
             } else try {
                 val id = obj.getString("patientId")
-                var patientx: Patient? = Patient.PatientIndex.get(id)
+                var patientx: Patient? = Patient.PatientIndex[id]
                 if (patientx == null) {
                     patientx = Patient.createByPKPatient(id)
                 }
@@ -80,7 +80,7 @@ class PatientDAO {
           val rows: ArrayList<String> = Ocl.parseCSVtable(lines)
           for (item in rows.indices) {
               val row = rows[item]
-              if (row == null || row.trim { it <= ' ' }.length == 0) {
+              if (row == null || row.trim { it <= ' ' }.isEmpty()) {
                   //trim
               } else {
                   val x: Patient? = parseCSV(row)
@@ -136,7 +136,7 @@ class PatientDAO {
             try {
                 val map = obj as HashMap<String, Object>
                 val id: String = map["patientId"].toString()
-                var patientx: Patient? = Patient.PatientIndex.get(id)
+                var patientx: Patient? = Patient.PatientIndex[id]
                 if (patientx == null) {
                     patientx = Patient.createByPKPatient(id)
                 }
