@@ -13,27 +13,30 @@ class PagerAdapter(private val mContext: Context, fm: FragmentManager) : Fragmen
 
     override fun getItem(position: Int): Fragment {
         // instantiate a fragment for the page.
-        if (position == 0) {
-            return CreatePatientFragment.newInstance(mContext)    } 
-        else if (position == 1) {
-            return ListPatientFragment.newInstance(mContext)    } 
-        else if (position == 2) {
-            return EditPatientFragment.newInstance(mContext)    } 
-        else if (position == 3) {
-            return DeletePatientFragment.newInstance(mContext)    } 
-        else if (position == 4) {
-            return CreateAppointmentFragment.newInstance(mContext)    } 
-        else if (position == 5) {
-            return ListAppointmentFragment.newInstance(mContext)    } 
-        else if (position == 6) {
-            return EditAppointmentFragment.newInstance(mContext)    } 
-        else if (position == 7) {
-            return DeleteAppointmentFragment.newInstance(mContext)    } 
-        else if (position == 8) {
-            return AddPatientattendsAppointmentFragment.newInstance(mContext)    } 
-        else if (position == 9) {
-            return RemovePatientattendsAppointmentFragment.newInstance(mContext)    } 
-        return CreatePatientFragment.newInstance(mContext) 
+            return when (position) {
+                0 -> { 
+                    CreatePatientFragment.newInstance(mContext) 
+                }            1 -> { 
+                    ListPatientFragment.newInstance(mContext) 
+                }            2 -> { 
+                    EditPatientFragment.newInstance(mContext) 
+                }            3 -> { 
+                    DeletePatientFragment.newInstance(mContext) 
+                }            4 -> { 
+                    CreateAppointmentFragment.newInstance(mContext) 
+                }            5 -> { 
+                    ListAppointmentFragment.newInstance(mContext) 
+                }            6 -> { 
+                    EditAppointmentFragment.newInstance(mContext) 
+                }            7 -> { 
+                    DeleteAppointmentFragment.newInstance(mContext) 
+                }            8 -> { 
+                    AddPatientattendsAppointmentFragment.newInstance(mContext) 
+                }            9 -> { 
+                    RemovePatientattendsAppointmentFragment.newInstance(mContext) 
+                }
+                else -> CreatePatientFragment.newInstance(mContext) 
+             }
     }
 
     override fun getPageTitle(position: Int): CharSequence {
