@@ -88,10 +88,10 @@ class RemovePatientattendsAppointmentFragment : Fragment(), View.OnClickListener
 
     override fun onItemSelected(_parent: AdapterView<*>, _v: View?, _position: Int, _id: Long) {
         if (_parent === patientIdSpinner) {
-            patientIdTextField.setText(allPatientpatientId.get(_position))
+            patientIdTextField.setText(allPatientpatientId[_position])
         }
         if (_parent ==appointmentIdSpinner) {
-            appointmentIdTextField.setText(allAppointmentappointmentId.get(_position))
+            appointmentIdTextField.setText(allAppointmentappointmentId[_position])
         }
     }
 
