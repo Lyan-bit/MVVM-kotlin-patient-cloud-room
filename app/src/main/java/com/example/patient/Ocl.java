@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ocl {
+ 
+ private Ocl() {
+        // Private constructor to prevent instantiation
+ }
+ 
  public static List<String> tokeniseCSV(String line)  {
    // Assumes the separator is a comma
    StringBuilder buff = new StringBuilder();
