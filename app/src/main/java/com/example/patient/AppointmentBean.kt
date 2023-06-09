@@ -45,7 +45,7 @@ class AppointmentBean(_c: Context) {
 		return errors.isNotEmpty()
 	}
 
-	suspend fun createAppointment() {
+	fun createAppointment() {
 		model.createAppointment(AppointmentEntity(appointmentId, code))
 		resetData()
 	}
@@ -80,7 +80,7 @@ class AppointmentBean(_c: Context) {
 		return errors.isNotEmpty()
 	}
 
-	suspend fun editAppointment() {
+	fun editAppointment() {
 		model.editAppointment(AppointmentEntity(appointmentId, code))
 		resetData()
 	}
@@ -93,7 +93,7 @@ class AppointmentBean(_c: Context) {
 		return errors.isNotEmpty()
 	}
 
-	suspend fun deleteAppointment() {
+	fun deleteAppointment() {
 		model.deleteAppointment(appointmentId)
 		resetData()
 	}
