@@ -30,20 +30,20 @@ class PatientDAO {
         }
 
         fun isCached(id: String?): Boolean {
-            Patient.PatientIndex[id] ?: return false
+            Patient.patientIndex[id] ?: return false
             return true
         }
 
         fun getCachedInstance(id: String): Patient? {
-            return Patient.PatientIndex[id]
+            return Patient.patientIndex[id]
         }
 
       fun parseCSV(line: String?): Patient? {
           if (line == null) {
               return null
           }
-          val line1vals: ArrayList<String> = Ocl.tokeniseCSV(line)
-          var patientx: Patient? = Patient.PatientIndex[line1vals[0]]
+          val line1vals: List<String> = Ocl.tokeniseCSV(line)
+          var patientx: Patient? = Patient.patientIndex[line1vals[0]]
           if (patientx == null) {
               patientx = Patient.createByPKPatient(line1vals[0])
           }
@@ -59,7 +59,7 @@ class PatientDAO {
                 null
             } else try {
                 val id = obj.getString("patientId")
-                var patientx: Patient? = Patient.PatientIndex[id]
+                var patientx: Patient? = Patient.patientIndex[id]
                 if (patientx == null) {
                     patientx = Patient.createByPKPatient(id)
                 }
@@ -77,7 +77,7 @@ class PatientDAO {
           if (lines == null) {
               return result
           }
-          val rows: ArrayList<String> = Ocl.parseCSVtable(lines)
+          val rows: List<String> = Ocl.parseCSVtable(lines)
           for (item in rows.indices) {
               val row = rows[item]
               if (row == null || row.trim { it <= ' ' }.isEmpty()) {
@@ -136,7 +136,7 @@ class PatientDAO {
             try {
                 val map = obj as HashMap<String, Object>
                 val id: String = map["patientId"].toString()
-                var patientx: Patient? = Patient.PatientIndex[id]
+                var patientx: Patient? = Patient.patientIndex[id]
                 if (patientx == null) {
                     patientx = Patient.createByPKPatient(id)
                 }
