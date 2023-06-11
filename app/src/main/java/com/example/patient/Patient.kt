@@ -5,38 +5,38 @@ import java.util.HashMap
 class Patient {
 
     init {
-        PatientAllInstances.add(this)
+        patientAllInstances.add(this)
     }
 
     companion object {
-        var PatientAllInstances = ArrayList<Patient>()
+        var patientAllInstances = ArrayList<Patient>()
         fun createPatient(): Patient {
             return Patient()
         }
-        
-        var PatientIndex: HashMap<String, Patient> = HashMap<String, Patient>()
-        
+
+        var patientIndex: HashMap<String, Patient> = HashMap<String, Patient>()
+
         fun createByPKPatient(idx: String): Patient {
-            var result: Patient? = PatientIndex[idx]
+            var result: Patient? = patientIndex[idx]
             if (result != null) { return result }
-                  result = Patient()
-                  PatientIndex.put(idx,result)
-                  result.patientId = idx
-                  return result
+            result = Patient()
+            patientIndex.put(idx,result)
+            result.patientId = idx
+            return result
         }
-        
-		fun killPatient(idx: String?) {
-            val rem = PatientIndex[idx] ?: return
+
+        fun killPatient(idx: String?) {
+            val rem = patientIndex[idx] ?: return
             val remd = ArrayList<Patient>()
             remd.add(rem)
-            PatientIndex.remove(idx)
-            PatientAllInstances.removeAll(remd)
-        }        
+            patientIndex.remove(idx)
+            patientAllInstances.removeAll(remd)
+        }
     }
 
     var patientId = ""  /* identity */
-    var name = "" 
-    var appointmentId = "" 
+    var name = ""
+    var appointmentId = ""
     var attends : Appointment? = null
 
 }
