@@ -115,9 +115,9 @@ package com.example.patient
 			} else {
 				viewLifecycleOwner.lifecycleScope.launchWhenStarted  {	
 						val selectedItem = model.searchPatientById(patientIdData)
-						patientIdTextField.setText(selectedItem.getPatientId().toString())
-				nameTextField.setText(selectedItem.getName().toString())
-				appointmentIdTextField.setText(selectedItem.getAppointmentId().toString())
+						patientIdTextField.setText(selectedItem.patientId.toString())
+				nameTextField.setText(selectedItem.name.toString())
+				appointmentIdTextField.setText(selectedItem.appointmentId.toString())
 		
 					Toast.makeText(myContext, "search Patient done!", Toast.LENGTH_LONG).show()
 					
