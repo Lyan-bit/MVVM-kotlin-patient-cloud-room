@@ -25,9 +25,9 @@ class PatientRecyclerViewAdapter (items: List<PatientVO>, listener: ListPatientF
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
         holder.mItem = mValues[position]
-        holder.crudPatientPatientIdView.text = " " + mValues[position].getPatientId() + " "
-        holder.crudPatientNameView.text = " " + mValues[position].getName() + " "
-        holder.crudPatientAppointmentIdView.text = " " + mValues[position].getAppointmentId() + " "
+        holder.crudPatientPatientIdView.text = " " + mValues[position].patientId + " "
+        holder.crudPatientNameView.text = " " + mValues[position].name + " "
+        holder.crudPatientAppointmentIdView.text = " " + mValues[position].appointmentId + " "
 
         holder.mView.setOnClickListener { mListener.onListPatientFragmentInteraction(holder.mItem) }
     }
